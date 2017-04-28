@@ -1,7 +1,7 @@
 {
-  "name": "react-babel-webpack-boilerplate",
-  "version": "1.4.1",
-  "description": "A boilerplate for React-Babel-Webpack project",
+  "name": "m-todo-list",
+  "version": "0.0.1",
+  "description": "A todo list app",
   "main": "app/main.jsx",
   "scripts": {
     "precommit": "npm run lint",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "babel-runtime": "6.x",
+    "prop-types": "^15.5.8",
     "react": "15.x",
     "react-dom": "15.x"
   },
@@ -55,7 +56,7 @@
     "web app",
     "boilerplate"
   ],
-  "author": "Ruan Yifeng",
+  "author": "Wen Yongyang",
   "license": "MIT",
   "config": {
     "validate-commit-msg": {
