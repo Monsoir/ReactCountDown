@@ -15,6 +15,16 @@ const styles = {
   },
 };
 
+export default () => (
+  <div style={styles.container}>
+    <CountDownOnce
+      description={'description haha'}
+      date={new Date(2017, 3, 29)}
+    />
+  </div>
+);
+
+/*
 export default class App extends React.Component {
   render() {
     return (
@@ -27,3 +37,4 @@ export default class App extends React.Component {
     );
   }
 }
+*/

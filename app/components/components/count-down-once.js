@@ -61,7 +61,8 @@ export default class CountDownOnce extends PureComponent {
 
   componentDidMount() {
     window.setInterval(() => {
-      const [tdays, thours, tminutes, tseconds] = DateHelper.prettifyTimeIntervalStartFromNow(this.props.date);
+      const temp = DateHelper.prettifyTimeIntervalStartFromNow(this.props.date);
+      const [tdays, thours, tminutes, tseconds] = temp;
       this.setState({
         days: tdays,
         hours: thours,
@@ -73,7 +74,9 @@ export default class CountDownOnce extends PureComponent {
 
   renderDigit = (date) => {
     if (date) {
-      const [days, hours, minutes, seconds] = DateStringPrettifier.prettifiyDateString([this.state.days, this.state.hours, this.state.minutes, this.state.seconds]);
+      const params = [this.state.days, this.state.hours, this.state.minutes, this.state.seconds];
+      const temp = DateStringPrettifier.prettifiyDateString(params);
+      const [days, hours, minutes, seconds] = temp;
       return (
         <p style={styles.digit}>{`${days} : ${hours} : ${minutes} : ${seconds}`}</p>
       );
