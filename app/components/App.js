@@ -40,7 +40,7 @@ export default () => (
 );
 */
 
-
+// eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {
   render() {
     const date = new Date();

@@ -77,9 +77,7 @@ export default class extends PureComponent {
     }, 1000);
   }
 
-  renderDescription = () => {
-    return Render.renderDescription(this.props.description, styles.description);
-  };
+  renderDescription = () => Render.renderDescription(this.props.description, styles.description);
 
   renderDigit = () => {
     const params = [this.state.days, this.state.hours, this.state.minutes, this.state.seconds];

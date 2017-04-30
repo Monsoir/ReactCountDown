@@ -97,9 +97,7 @@ export default class CountDownOnce extends PureComponent {
     return Render.renderDigit(temp, styles.digit);
   };
 
-  renderDescription = () => {
-    return Render.renderDescription(this.props.description, styles.description);
-  };
+  renderDescription = () => Render.renderDescription(this.props.description, styles.description);
 
   render() {
     return (
