@@ -39,25 +39,19 @@ const styles = {
 
 };
 
-export default class CountDownOnce extends PureComponent {
+export default class CountDownEveryMonth extends PureComponent {
   static propTypes = {
-    date: PropTypes.instanceOf(Date),
+    targetDay: PropTypes.number, // 一个月中的第几天
+    targetHour: PropTypes.number,
+    targetMinute: PropTypes.number,
     description: PropTypes.string,
-    year: PropTypes.number,
-    month: PropTypes.number,
-    day: PropTypes.number,
-    hour: PropTypes.number,
-    minute: PropTypes.number,
   };
 
   static defaultProps = {
-    date: null,
+    targetDay: 0,
+    targetHour: 0,
+    targetMinute: 0,
     description: '',
-    year: 0,
-    month: 0,
-    day: 0,
-    hour: 0,
-    minute: 0,
   };
 
   constructor(props) {
@@ -72,15 +66,9 @@ export default class CountDownOnce extends PureComponent {
 
   startCounting = () => {
     window.setInterval(() => {
-      let date = null;
-      if (this.props.date) {
-        date = this.props.date;
-      } else {
-        date = new Date();
-        date.setFullYear(this.props.year, this.props.month, this.props.day);
-        date.setHours(this.props.hour, this.props.minute, 0);
-      }
-      const temp = DateHelper.prettifyTimeIntervalStartFromNow(date);
+      const date = new Date();
+      const targetDate = DateHelper.getTargetDateInAMonth(date, this.props.targetDay, this.props.targetHour, this.props.targetMinute);
+      const temp = DateHelper.prettifyTimeIntervalStartFromNow(targetDate);
       const [tdays, thours, tminutes, tseconds] = temp;
       this.setState({
         days: tdays,
@@ -91,13 +79,13 @@ export default class CountDownOnce extends PureComponent {
     }, 1000);
   };
 
+  renderDescription = () => Render.renderDescription(this.props.description, styles.description);
+
   renderDigit = () => {
     const params = [this.state.days, this.state.hours, this.state.minutes, this.state.seconds];
     const temp = DateStringPrettifier.prettifiyDateString(params);
     return Render.renderDigit(temp, styles.digit);
   };
-
-  renderDescription = () => Render.renderDescription(this.props.description, styles.description);
 
   render() {
     return (
@@ -107,5 +95,4 @@ export default class CountDownOnce extends PureComponent {
       </div>
     );
   }
-
 }

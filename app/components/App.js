@@ -2,6 +2,8 @@ import React from 'react';
 
 import CountDownOnce from './components/count-down-once';
 import CountDownEveryDay from './components/count-down-every-day';
+import CountDownEveryWeek from './components/count-down-every-week';
+import CountDownEveryMonth from './components/count-down-every-month';
 
 const styles = {
   container: {
@@ -17,31 +19,22 @@ const styles = {
   },
 };
 
-/*
-export default () => (
-  const date = new Date();
-  date.setDate(30);
-  date.setHours(24, 0);
-  <div style={styles.container}>
-    <CountDownOnce
-      description={'description haha'}
-      year={date.getFullYear()}
-      month={date.getMonth()}
-      day={date.getDate()}
-      hour={date.getHours()}
-      minute={date.getMinutes()}
-    />
-    <CountDownEveryDay
-      description={'Countdown every day'}
-      targetHour={24}
-      targetMinute={0}
-    />
-  </div>
-);
-*/
-
 // eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      counters: [],
+    };
+  }
+
+  componentDidMount() {
+    this.state.counters.forEach((element) => {
+      element.startCounting();
+    });
+  }
+
   render() {
     const date = new Date();
     date.setDate(30);
@@ -49,6 +42,7 @@ export default class App extends React.Component {
     return (
       <div style={styles.container}>
         <CountDownOnce
+          ref={(instance) => { this.state.counters.push(instance); }}
           description={'description haha'}
           year={date.getFullYear()}
           month={date.getMonth()}
@@ -57,9 +51,24 @@ export default class App extends React.Component {
           minute={date.getMinutes()}
         />
         <CountDownEveryDay
+          ref={(instance) => { this.state.counters.push(instance); }}
           description={'Countdown every day'}
-          targetHour={24}
-          targetMinute={0}
+          targetHour={15}
+          targetMinute={23}
+        />
+        <CountDownEveryWeek
+          ref={(instance) => { this.state.counters.push(instance); }}
+          description={'Count down every week'}
+          targetDay={0}
+          targetHour={23}
+          targetMinute={48}
+        />
+        <CountDownEveryMonth
+          ref={(instance) => { this.state.counters.push(instance); }}
+          description={'Count down every month'}
+          targetDay={1}
+          targetHour={23}
+          targetMinute={25}
         />
       </div>
     );

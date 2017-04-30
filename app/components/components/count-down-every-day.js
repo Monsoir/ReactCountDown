@@ -39,7 +39,7 @@ const styles = {
 
 };
 
-export default class extends PureComponent {
+export default class CountDownEveryDay extends PureComponent {
   static propTypes = {
     targetHour: PropTypes.number,
     targetMinute: PropTypes.number,
@@ -62,11 +62,14 @@ export default class extends PureComponent {
     };
   }
 
-  componentDidMount() {
+  startCounting = () => {
     window.setInterval(() => {
-      const date = new Date();
-      date.setHours(parseInt(this.props.targetHour, 10), parseInt(this.props.targetMinute, 10), 0);
-      const temp = DateHelper.prettifyTimeIntervalStartFromNow(date);
+      const targetDate = new Date();
+      targetDate.setHours(this.props.targetHour, this.props.targetMinute, 0);
+      if (Date.now() > targetDate.getTime()) {
+        targetDate.setDate(targetDate.getDate() + 1);
+      }
+      const temp = DateHelper.prettifyTimeIntervalStartFromNow(targetDate);
       const [tdays, thours, tminutes, tseconds] = temp;
       this.setState({
         days: tdays,
@@ -75,7 +78,7 @@ export default class extends PureComponent {
         seconds: tseconds,
       });
     }, 1000);
-  }
+  };
 
   renderDescription = () => Render.renderDescription(this.props.description, styles.description);
 
