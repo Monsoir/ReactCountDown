@@ -39,25 +39,17 @@ const styles = {
 
 };
 
-export default class CountDownOnce extends PureComponent {
+export default class extends PureComponent {
   static propTypes = {
-    date: PropTypes.instanceOf(Date),
+    targetHour: PropTypes.number,
+    targetMinute: PropTypes.number,
     description: PropTypes.string,
-    year: PropTypes.number,
-    month: PropTypes.number,
-    day: PropTypes.number,
-    hour: PropTypes.number,
-    minute: PropTypes.number,
   };
 
   static defaultProps = {
-    date: null,
+    targetHour: 0,
+    targetMinute: 0,
     description: '',
-    year: 0,
-    month: 0,
-    day: 0,
-    hour: 0,
-    minute: 0,
   };
 
   constructor(props) {
@@ -72,14 +64,8 @@ export default class CountDownOnce extends PureComponent {
 
   componentDidMount() {
     window.setInterval(() => {
-      let date = null;
-      if (this.props.date) {
-        date = this.props.date;
-      } else {
-        date = new Date();
-        date.setFullYear(this.props.year, this.props.month, this.props.day);
-        date.setHours(this.props.hour, this.props.minute, 0);
-      }
+      const date = new Date();
+      date.setHours(parseInt(this.props.targetHour, 10), parseInt(this.props.targetMinute, 10), 0);
       const temp = DateHelper.prettifyTimeIntervalStartFromNow(date);
       const [tdays, thours, tminutes, tseconds] = temp;
       this.setState({
@@ -91,14 +77,14 @@ export default class CountDownOnce extends PureComponent {
     }, 1000);
   }
 
+  renderDescription = () => {
+    return Render.renderDescription(this.props.description, styles.description);
+  };
+
   renderDigit = () => {
     const params = [this.state.days, this.state.hours, this.state.minutes, this.state.seconds];
     const temp = DateStringPrettifier.prettifiyDateString(params);
     return Render.renderDigit(temp, styles.digit);
-  };
-
-  renderDescription = () => {
-    return Render.renderDescription(this.props.description, styles.description);
   };
 
   render() {
@@ -109,5 +95,4 @@ export default class CountDownOnce extends PureComponent {
       </div>
     );
   }
-
 }

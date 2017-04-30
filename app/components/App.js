@@ -1,10 +1,12 @@
 import React from 'react';
+
 import CountDownOnce from './components/count-down-once';
+import CountDownEveryDay from './components/count-down-every-day';
 
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: '#34495e',
     alignItems: 'center',
     position: 'absolute',
@@ -15,26 +17,52 @@ const styles = {
   },
 };
 
+/*
 export default () => (
+  const date = new Date();
+  date.setDate(30);
+  date.setHours(24, 0);
   <div style={styles.container}>
     <CountDownOnce
       description={'description haha'}
-      date={new Date(2017, 3, 29)}
+      year={date.getFullYear()}
+      month={date.getMonth()}
+      day={date.getDate()}
+      hour={date.getHours()}
+      minute={date.getMinutes()}
+    />
+    <CountDownEveryDay
+      description={'Countdown every day'}
+      targetHour={24}
+      targetMinute={0}
     />
   </div>
 );
+*/
 
-/*
+
 export default class App extends React.Component {
   render() {
+    const date = new Date();
+    date.setDate(30);
+    date.setHours(24, 0);
     return (
       <div style={styles.container}>
         <CountDownOnce
           description={'description haha'}
-          date={new Date(2017, 3, 29)}
+          year={date.getFullYear()}
+          month={date.getMonth()}
+          day={date.getDate()}
+          hour={date.getHours()}
+          minute={date.getMinutes()}
+        />
+        <CountDownEveryDay
+          description={'Countdown every day'}
+          targetHour={24}
+          targetMinute={0}
         />
       </div>
     );
   }
 }
-*/
+
