@@ -4,40 +4,7 @@ import { PropTypes } from 'prop-types';
 import DateHelper from '../../utils/DateHelper';
 import DateStringPrettifier from '../../utils/DateStringPrettifier';
 import Render from '../../utils/Render';
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#FDF5E6',
-  },
-
-  description: {
-    // color: '#D2B48C',
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 50,
-  },
-
-  descriptionException: {
-    color: 'red',
-    textAlign: 'center',
-    fontSize: 50,
-  },
-
-  digit: {
-    // color: '#ecf0f1',
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 40,
-  },
-
-  digitException: {
-    color: 'red',
-    textAlign: 'center',
-    fontSize: 40,
-  },
-
-};
+import styles from './count-down.css';
 
 export default class CountDownEveryMonth extends PureComponent {
   static propTypes = {
@@ -89,7 +56,7 @@ export default class CountDownEveryMonth extends PureComponent {
 
   render() {
     return (
-      <div style={styles.container}>
+      <div className={styles.container}>
         {this.renderDescription()}
         {this.renderDigit()}
       </div>

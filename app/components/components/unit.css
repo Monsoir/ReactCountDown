@@ -1,0 +1,9 @@
+@import url(../../assets/fonts.css);
+
+.unit {
+  color: #1abc9c;
+  font-size: 40px;
+  font-family: 'Roboto Condensed', serif;
+  font-weight: 40;
+  text-align: center;
+}

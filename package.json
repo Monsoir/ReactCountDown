@@ -1,7 +1,7 @@
 {
-  "name": "m-todo-list",
+  "name": "react-count-down",
   "version": "0.0.1",
-  "description": "A todo list app",
+  "description": "A count down app",
   "main": "app/main.jsx",
   "scripts": {
     "precommit": "npm run lint",

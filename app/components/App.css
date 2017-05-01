@@ -1,3 +1,28 @@
-h2{
-  color: red;
+@import url('../assets/fonts.css');
+
+:global(.description) {
+  margin: 10px;
+  font-size: 50px;
+  font-family: 'Roboto', serif;
+  text-align: center;
+  color: #D2B48C;
+  align-self: center;
+}
+
+:global(.digitSection) {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #34495e;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

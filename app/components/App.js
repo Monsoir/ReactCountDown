@@ -4,20 +4,7 @@ import CountDownOnce from './components/count-down-once';
 import CountDownEveryDay from './components/count-down-every-day';
 import CountDownEveryWeek from './components/count-down-every-week';
 import CountDownEveryMonth from './components/count-down-every-month';
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: '#34495e',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-};
+import styles from './App.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {
@@ -40,10 +27,10 @@ export default class App extends React.Component {
     date.setDate(30);
     date.setHours(24, 0);
     return (
-      <div style={styles.container}>
+      <div className={styles.container}>
         <CountDownOnce
           ref={(instance) => { this.state.counters.push(instance); }}
-          description={'description haha'}
+          description={'Countdown once'}
           year={date.getFullYear()}
           month={date.getMonth()}
           day={date.getDate()}
